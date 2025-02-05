@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MediatR;
 using Refit;
 using System.Net;
 using System.Text.Json;
@@ -6,6 +6,12 @@ using System.Text.Json.Serialization;
 using ProblemDetails = Microsoft.AspNetCore.Mvc.ProblemDetails;
 namespace UdemyMicroservices.Shared
 {
+
+    public interface IRequestByServiceResult<T> : IRequest<ServiceResult<T>>; //MediatR
+
+    public interface IRequestByServiceResult : IRequest<ServiceResult>; //MediatR
+
+
     //Refit
     //ProblemDetails - RFC 7807
     public class ServiceResult
@@ -48,7 +54,7 @@ namespace UdemyMicroservices.Shared
                 StatusCode = statusCode,
                 Fail = problemDetails
             };
-        }
+        } //Manuel olarak oluşturulan hata
 
         public static ServiceResult Error(string title, string description, HttpStatusCode status)
         {
@@ -62,7 +68,7 @@ namespace UdemyMicroservices.Shared
                     Status = (int)status
                 }
             };
-        }
+        } //Manuel olarak oluşturulan hata
 
         public static ServiceResult ErrorFromProblemDetails(ApiException apiException)
         {
@@ -89,7 +95,7 @@ namespace UdemyMicroservices.Shared
                 StatusCode = apiException.StatusCode
             };
 
-        }
+        } //Refit ile gelen hata
 
         public static ServiceResult ErrorFromValidatons(IDictionary<string, object?> errors)
         {
@@ -100,21 +106,21 @@ namespace UdemyMicroservices.Shared
                 {
                     Title = "Validation errors occured",
                     Detail = "Please check the errors property for more details",
-                    Extensions = errors,
+                    Extensions = errors,//validation errors
                     Status = (int)HttpStatusCode.BadRequest
                 }
             };
-        }    
+        }      //Validation hataları
 
     }
-    public class ServiceResult<T> : ServiceResult
+    public sealed class ServiceResult<T> : ServiceResult
     {
         public T? Data { get; set; }
 
         [JsonIgnore] public string? UrlAsCreated { get; set; }
 
 
-        public static ServiceResult<T> Success(T data) //200
+        public static ServiceResult<T> SuccessAsOk(T data) //200
         {
             return new ServiceResult<T>
             {
@@ -143,7 +149,7 @@ namespace UdemyMicroservices.Shared
                 StatusCode = statusCode,
                 Fail = problemDetails
             };
-        }
+        } //Manuel olarak oluşturulan hata
 
         public new static ServiceResult<T> Error(string title, string description, HttpStatusCode status)
         {
@@ -157,7 +163,7 @@ namespace UdemyMicroservices.Shared
                     Status = (int)status
                 }
             };
-        }
+        } //Manuel olarak oluşturulan hata
 
         public new static ServiceResult<T> ErrorFromProblemDetails(ApiException apiException)
         {
@@ -184,7 +190,7 @@ namespace UdemyMicroservices.Shared
                 StatusCode = apiException.StatusCode
             };
 
-        }
+        } //Refit ile gelen hata
 
         public new static ServiceResult<T> ErrorFromValidatons(IDictionary<string, object?> errors)
         {
@@ -199,7 +205,7 @@ namespace UdemyMicroservices.Shared
                     Status = (int)HttpStatusCode.BadRequest
                 }
             };
-        }
+        } //Validation hataları
 
 
     }
