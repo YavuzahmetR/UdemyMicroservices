@@ -13,7 +13,7 @@ namespace UdemyMicroservice.Catalog.Api.Repositories
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedNever(); 
             builder.Property(x => x.Name).HasElementName("name").HasMaxLength(100);
-            builder.Property(x => x.Description).HasElementName("name").HasMaxLength(1000);
+            builder.Property(x => x.Description).HasElementName("description").HasMaxLength(1000);
             builder.Property(x => x.CreatedTime).HasElementName("createdTime");
             builder.Property(x => x.UserId).HasElementName("userId");
             builder.Property(x => x.Picture).HasElementName("picture");
