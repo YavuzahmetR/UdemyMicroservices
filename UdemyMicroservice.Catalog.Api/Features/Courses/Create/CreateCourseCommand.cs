@@ -5,5 +5,5 @@
         string Description,
         decimal Price,
         Guid CategoryId,
-        string ImageUrl) : IRequestByServiceResult<Guid>;
+        string? ImageUrl) : IRequestByServiceResult<Guid>;
 }
