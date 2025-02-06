@@ -1,6 +1,4 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Mvc;
-using UdemyMicroservices.Shared.Extensions;
+﻿using Microsoft.AspNetCore.Mvc;
 using UdemyMicroservices.Shared.Filters;
 using UdemyMicroservices.Shared.ProduceTypes;
 
@@ -13,6 +11,7 @@ namespace UdemyMicroservice.Catalog.Api.Features.Categories.Create
             // ( / => base url ) -> http://localhost:5000/api/categories
             routeGroupBuilder.MapPost("/", async (CreateCategoryCommand command, IMediator mediator) =>
                 (await mediator.Send(command)).ToGenericResult())
+                .MapToApiVersion(1, 0)
                 .Produces<CreateCategoryResponse>(StatusCodes.Status201Created)
                 .Produces<NotFoundType>(StatusCodes.Status404NotFound)
                 .Produces<ProblemDetails>(StatusCodes.Status400BadRequest)

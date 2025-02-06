@@ -1,11 +1,4 @@
-﻿using AutoMapper;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
-using UdemyMicroservice.Catalog.Api.Repositories;
-using UdemyMicroservices.Shared;
-using UdemyMicroservices.Shared.Extensions;
-
-namespace UdemyMicroservice.Catalog.Api.Features.Categories.GetAll
+﻿namespace UdemyMicroservice.Catalog.Api.Features.Categories.GetAll
 {
     public sealed record GetAllQueryRequest : IRequestByServiceResult<List<GetAllQueryResponse>>;
 
@@ -21,12 +14,13 @@ namespace UdemyMicroservice.Catalog.Api.Features.Categories.GetAll
     }
     public sealed record GetAllQueryResponse(Guid Id, string Name);
 
-    public static class GetAllCategoryQueryEndPoint 
+    public static class GetAllCategoriesQueryEndPoint 
     {
-        public static RouteGroupBuilder GetAllCategoryGroupItemEndPoint(this RouteGroupBuilder routeGroupBuilder)
+        public static RouteGroupBuilder GetAllCategoriesGroupItemEndPoint(this RouteGroupBuilder routeGroupBuilder)
         {
             routeGroupBuilder.MapGet("/", async (IMediator mediator) =>
-                (await mediator.Send(new GetAllQueryRequest())).ToGenericResult());
+                (await mediator.Send(new GetAllQueryRequest())).ToGenericResult())
+                .MapToApiVersion(1, 0);
             return routeGroupBuilder;
         }
     }

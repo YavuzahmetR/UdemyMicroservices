@@ -31,7 +31,8 @@ namespace UdemyMicroservice.Catalog.Api.Features.Categories.GetById
         public static RouteGroupBuilder GetByIdCategoryGroupItemEndPoint(this RouteGroupBuilder routeGroupBuilder)
         {
             routeGroupBuilder.MapGet("/{id:guid}", async (IMediator mediator,Guid id) =>
-                (await mediator.Send(new GetByIdQueryRequest(id))).ToGenericResult());
+                (await mediator.Send(new GetByIdQueryRequest(id))).ToGenericResult())
+                .MapToApiVersion(1, 0);
             return routeGroupBuilder;
         }
     }
