@@ -6,5 +6,9 @@ namespace UdemyMicroservice.Catalog.Api.Repositories
     {
         [BsonElement("_id")]
         public Guid Id { get; set; }
+        protected BaseEntity()
+        {
+            Id = NewId.NextSequentialGuid();
+        }
     }
 }
