@@ -1,5 +1,10 @@
 ﻿namespace UdemyMicroservices.Shared.ProduceTypes
 {
-    public sealed record NotFoundType(string Title, string Description, int Status);
+    public readonly struct NotFoundType
+    {
+        public string Title { get; }
+        public string Description { get; }
+        public int Status { get; }
+    }
 
 }
