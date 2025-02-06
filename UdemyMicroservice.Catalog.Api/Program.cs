@@ -1,5 +1,6 @@
 using UdemyMicroservice.Catalog.Api;
 using UdemyMicroservice.Catalog.Api.Features.Categories;
+using UdemyMicroservice.Catalog.Api.Features.Courses;
 using UdemyMicroservice.Catalog.Api.Options;
 using UdemyMicroservice.Catalog.Api.Repositories;
 using UdemyMicroservices.Shared.Extensions;
@@ -16,6 +17,7 @@ builder.Services.AddCommonServiceExt(typeof(CatalogAssembly));
 var app = builder.Build();
 
 app.AddCategoryGroupEndPointExt();
+app.AddCourseGroupEndPointExt();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
