@@ -8,7 +8,7 @@ using UdemyMicroservices.Shared;
 
 namespace UdemyMicroservice.Catalog.Api.Features.Categories.Create
 {
-    public sealed class CreateCategoryCommandHandler(AppDbContext dbContext) : IRequestHandler<CreateCategoryCommand, ServiceResult<CreateCategoryResponse>>
+    public sealed class CreateCategoryCommandHandler(AppDbContext dbContext,IMapper mapper) : IRequestHandler<CreateCategoryCommand, ServiceResult<CreateCategoryResponse>>
     {
         public async Task<ServiceResult<CreateCategoryResponse>> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
         {
@@ -22,15 +22,11 @@ namespace UdemyMicroservice.Catalog.Api.Features.Categories.Create
 
             }
 
-            Category newCategory = new Category
-            {
-                Name = request.Name,
-                Id = NewId.NextSequentialGuid()
-            };
+            var newCategory = mapper.Map<Category>(request);
 
             await dbContext.Categories.AddAsync(newCategory, cancellationToken);
             await dbContext.SaveChangesAsync(cancellationToken);
-            return ServiceResult<CreateCategoryResponse>.SuccessAsCreated(new CreateCategoryResponse(newCategory.Id), "<empty>");
+            return ServiceResult<CreateCategoryResponse>.SuccessAsCreated(new CreateCategoryResponse(newCategory.Id), $"/api/categories/{newCategory.Id}");
         }
     }
 }

@@ -8,7 +8,7 @@ namespace UdemyMicroservice.Catalog.Api.Features.Categories
     {
         public static void AddCategoryGroupEndPointExt(this WebApplication app)
         {
-            app.MapGroup("api/categories")
+            app.MapGroup("api/categories").WithTags("Categories")
                 .CreateCategoryGroupItemEndPoint()
                 .GetAllCategoryGroupItemEndPoint()
                 .GetByIdCategoryGroupItemEndPoint();
