@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UdemyMicroservices.Shared",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "basket", "basket", "{276E2C34-71E4-45E9-A741-89E02B06124A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UdemyMicroservice.Basket.Api", "UdemyMicroservice.Basket.Api\UdemyMicroservice.Basket.Api.csproj", "{AF90FD6C-6D8E-4B64-96E6-C7661E596320}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{5CEEACAE-29E7-4D69-A85F-D18E8DAF766E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5CEEACAE-29E7-4D69-A85F-D18E8DAF766E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5CEEACAE-29E7-4D69-A85F-D18E8DAF766E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF90FD6C-6D8E-4B64-96E6-C7661E596320}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF90FD6C-6D8E-4B64-96E6-C7661E596320}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF90FD6C-6D8E-4B64-96E6-C7661E596320}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF90FD6C-6D8E-4B64-96E6-C7661E596320}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,5 +54,6 @@ Global
 		{45AC1D20-5F0E-4440-804F-673AE9A4E6B1} = {54E10B00-8523-4EEE-974E-8C6B8430457A}
 		{5CEEACAE-29E7-4D69-A85F-D18E8DAF766E} = {45AC1D20-5F0E-4440-804F-673AE9A4E6B1}
 		{276E2C34-71E4-45E9-A741-89E02B06124A} = {32EE4E89-BB85-486C-80EC-F720AA2DA05F}
+		{AF90FD6C-6D8E-4B64-96E6-C7661E596320} = {276E2C34-71E4-45E9-A741-89E02B06124A}
 	EndGlobalSection
 EndGlobal

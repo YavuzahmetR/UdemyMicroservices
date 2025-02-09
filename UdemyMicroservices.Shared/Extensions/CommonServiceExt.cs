@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using UdemyMicroservices.Shared.Services;
 
 namespace UdemyMicroservices.Shared.Extensions
 {
@@ -19,6 +20,7 @@ namespace UdemyMicroservices.Shared.Extensions
             services.AddFluentValidationAutoValidation();
             services.AddValidatorsFromAssemblyContaining(assembly);
             services.AddAutoMapper(assembly);
+            services.AddScoped<IIdentiyService, IdentityFakeService>();
             return services;
         }
     }
