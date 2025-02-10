@@ -1,0 +1,22 @@
+@UdemyMicroservice.File.Api_HostAddress = http://localhost:5221
+
+### Dosya Yükleme (POST) - Hello World Ýçeren Bir TXT Dosyasý
+POST {{UdemyMicroservice.File.Api_HostAddress}}/api/v1/files
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="hello.txt"
+Content-Type: text/plain
+
+Hello World
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+
+
+### Dosya Silme (DELETE)
+DELETE {{UdemyMicroservice.File.Api_HostAddress}}/api/v1/files/
+Content-Type: application/json
+
+{
+    "fileNameWithExtension": "0ef9690e-84d1-4754-84ad-f67393c2d777.png"
+}
