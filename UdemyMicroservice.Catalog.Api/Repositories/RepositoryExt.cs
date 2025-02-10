@@ -13,13 +13,13 @@ namespace UdemyMicroservice.Catalog.Api.Repositories
                 return new MongoClient(options.ConnectionString);
             });
 
-
-            services.AddScoped<AppDbContext>(sp =>
+            services.AddScoped(sp =>
             {
                 var mongoClient = sp.GetRequiredService<IMongoClient>();
                 var options = sp.GetRequiredService<MongoOption>();
                 return AppDbContext.Create(mongoClient.GetDatabase(options.DatabaseName));
             });
+
             return services;
         }
     }
